@@ -1,0 +1,39 @@
+body {
+  /* overflow: hidden; */
+}
+.booking-aside {
+  width: 29%;
+  height: 80vh;
+}
+.vehicle-detail {
+  margin-inline: 4rem;
+  overflow: auto;
+  height: 80vh;
+}
+
+.single-vehicle-details {
+  max-width: 70%;
+}
+
+.reivews-section {
+  height: 75vh;
+  overflow-y: scroll;
+  width: 70%;
+}
+
+.image-gallery {
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .single-vehicle-details {
+    max-width: 100%;
+  }
+  .vehicle-detail{
+    margin-inline: 2rem;
+  }
+  .reivews-section {
+
+  width: 100%;
+}
+}
