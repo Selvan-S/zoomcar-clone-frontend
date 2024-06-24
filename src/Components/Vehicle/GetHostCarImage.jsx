@@ -1,5 +1,6 @@
 import React from "react";
 import ImageWithFallback from "../Common/ImageWithFallback";
+import vehicleFallbackImg from "../../assets/placeholder.jpeg";
 
 function GetHostCarImage({ image, index, length, vehicleId }) {
   const imgId = Math.min(index + 1, length);
@@ -10,7 +11,7 @@ function GetHostCarImage({ image, index, length, vehicleId }) {
     <div id={`${vehicleId}${imgId}`} className="carousel-item relative w-full">
       <ImageWithFallback
         src={`${image}`}
-        fallback="src\assets\placeholder.jpeg"
+        fallback={vehicleFallbackImg}
         alt={`hostCarImage`}
         className="custom-image"
       />
