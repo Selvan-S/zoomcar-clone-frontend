@@ -1,13 +1,13 @@
+import { useSnackbar } from "notistack";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  fetchUserDetails,
   forgotPasswordAPI,
   loginAPI,
   passwordResetAPI,
   registerAPI,
 } from "../Auth/auth";
-import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
+import { fetchUserDetails } from "../services/userService";
 
 const AuthContext = createContext();
 

@@ -46,3 +46,17 @@ export const reviewSchema = yup.object({
     .min(3, "min three characters are required")
     .required("Please fill the comment"),
 });
+
+// Create Vehicle Schema
+export const createVehicleSchema = yup.object({
+  name: yup.string().required("please fill in vehicle name"),
+  hostCarImage: yup.array().max(5, "Can upload max five images"),
+  carType: yup.string().required("please select vehicle type"),
+  fuelType: yup.string().required("please select fuel type"),
+  transmission: yup.string().required("please select transmission"),
+  seats: yup.string().required("please select No. of seats"),
+  pricePerHour: yup
+    .number()
+    .min(1, "min one is required")
+    .required("please fill in the price per hour"),
+});

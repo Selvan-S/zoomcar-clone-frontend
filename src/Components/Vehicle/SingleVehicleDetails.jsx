@@ -4,7 +4,9 @@ import VehicleImageGallery from "./VehicleImageGallery";
 function SingleVehicleDetails({ currentVehicleDetails }) {
   return (
     <div className="single-vehicle-details overflow-auto flex justify-between flex-col gap-4">
+      {/* Display vehicle image in gallery view */}
       <VehicleImageGallery hostCarImage={currentVehicleDetails.hostCarImage} />
+      {/* Other vehicle details in card view */}
       <div className="card-body">
         <h2 className="card-title">
           {currentVehicleDetails.name}

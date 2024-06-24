@@ -5,9 +5,11 @@ import { useAuth } from "../Components/context/AuthContext";
 import { useBooking } from "../Components/context/BookingContext";
 import FullScreenLoading from "../Components/Common/FullScreenLoading";
 import { getToken } from "../Components/Auth/auth";
+import { useSnackbar } from "notistack";
 function BookingForm() {
   const { id } = useParams();
   const { state } = useLocation();
+  const { enqueueSnackbar } = useSnackbar();
   const {
     totalBookedHours,
     protectionPackage,
@@ -37,6 +39,8 @@ function BookingForm() {
   const priceOfTheVehicle =
     (currentVehicleDetails?.pricePerHour || 0) * totalBookedHours;
   const totalPrice = +protectionPackage.selectedPrice + 99 + priceOfTheVehicle;
+
+  // Handles the vehicle checkout
   async function handleCheckout() {
     setIsloading(true);
     const stripe = await loadStripe(
@@ -57,6 +61,8 @@ function BookingForm() {
           items: [
             {
               id: currentVehicleDetails._id,
+              name: currentVehicleDetails.name,
+              hostCarImage: currentVehicleDetails?.hostCarImage[0] || [],
               totalPrice,
             },
           ],
@@ -73,13 +79,16 @@ function BookingForm() {
         return res.json().then((json) => Promise.reject(json));
       })
       .then((session) => {
+        enqueueSnackbar("Success: Redirecting to checkout page", {
+          variant: "success",
+        });
         stripe.redirectToCheckout({
           sessionId: session.id,
         });
-        console.log(session);
       })
       .catch((e) => {
         console.error(e.error);
+        enqueueSnackbar("Error in Checkout: " + e.error, { variant: "error" });
       })
       .finally(() => {
         setIsloading(false);

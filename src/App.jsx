@@ -62,6 +62,7 @@ function App() {
       <Route path="/vehicle/details/:id" element={<VehicleDetail />} />
       {/* Checkout the vehicle*/}
       <Route path="/vehicle/booking/:id" element={<BookingPage />} />
+
     </Routes>
   );
 }

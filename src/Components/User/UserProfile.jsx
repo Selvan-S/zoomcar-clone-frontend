@@ -4,93 +4,59 @@ import MainComponent from "../MainComponent/MainComponent";
 import Navbar from "../Common/Navbar";
 import Footer from "../Common/Footer";
 import { formatDate } from "../../utils/formatDate";
+import FullScreenLoading from "../Common/FullScreenLoading";
+import { uploadImageToImgur } from "../../utils/uploadImageToImgur";
+import { useSnackbar } from "notistack";
+import { updateUserAPI } from "../services/userService";
 
 function UserProfile() {
   const { user, setUser } = useAuth();
   const [file, setFile] = useState({ value: "", files: null });
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
-  const MAX_FILE_SIZE = 262144; // 250 KB
-
-  const checkFileSize = (file) => {
-    if (file.size > MAX_FILE_SIZE) {
-      alert("Select file less than 250 KB");
-      setFile({ value: "", files: null });
-      return false;
-    }
-    return true;
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && checkFileSize(file)) {
-      setFile({
-        value: event.target.value,
-        files: file,
-      });
-    }
-  };
-
-  const handleSubmit = async (event) => {
+  // handle the upload image to imgur
+  const handleImageUpload = async (event) => {
     event.preventDefault();
     setFileUploadLoading(true);
-    setIsDisabled(true);
+
     if (!file.files) {
       setFileUploadLoading(false);
-      setIsDisabled(false);
       console.error("No file selected");
+      enqueueSnackbar("No file selected", { variant: "error" });
       return;
     }
 
-    const formData = new FormData();
-    formData.append("userProfile", file.files);
-
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL}/${
-          import.meta.env.VITE_USER_BASE_URL
-        }/upload`,
-        {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${JSON.parse(
-              localStorage.getItem("authToken")
-            )}`,
-          },
-        }
-      );
+      // get the response from imgur
+      const response = await uploadImageToImgur(file.files); // upload the image and return the response
 
+      // Handling success
       if (response.ok) {
         const userAvatarLink = await response.json();
-        setUser({ ...user, userAvatarLink: userAvatarLink.link });
-        try {
-          await fetch(
-            `${import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL}/${
-              import.meta.env.VITE_USER_BASE_URL
-            }/update`,
-            {
-              method: "PUT",
-              body: JSON.stringify({ userAvatarLink: userAvatarLink.link }),
-              headers: {
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("authToken")
-                )}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-        } catch (error) {
-          console.error("Error while updateding user Details", error);
+        if (userAvatarLink.data.link != undefined) {
+          setUser({ ...user, userAvatarLink: userAvatarLink.data.link });
+          try {
+            // update the user with userAvatarLink
+            await updateUserAPI(userAvatarLink.data.link); // updating user with profile picture
+          } catch (error) {
+            console.error("Error while updating user Details", error);
+            enqueueSnackbar("Error while updating user Details", {
+              variant: "error",
+            });
+          }
         }
-        setFile({ ...file, ["value"]: "" });
+        setFile({
+          value: "",
+          files: null,
+        });
         setFileUploadLoading(false);
-        setIsDisabled(false);
       } else {
+        // Handle failure
+        const errorData = await response.json();
         setFileUploadLoading(false);
-        setIsDisabled(false);
         console.error("File upload failed");
+        enqueueSnackbar(errorData.data.error, { variant: "error" });
       }
     } catch (error) {
       console.error("Error occurred while uploading file:", error);
@@ -130,14 +96,14 @@ function UserProfile() {
                 value={file.value}
                 name="userProfile"
                 accept="image/png, image/jpeg"
-                onChange={handleFileChange}
+                onChange={(event) => handleFileChange(event, setFile)}
               />
             </div>
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={handleSubmit}
-              disabled={isDisabled}
+              onClick={handleImageUpload}
+              disabled={fileUploadLoading}
             >
               {fileUploadLoading ? (
                 <div className="flex gap-4 items-center text-primary">
@@ -171,6 +137,7 @@ function UserProfile() {
           </span>
         </button>
       </div>
+      {fileUploadLoading && <FullScreenLoading />}
       <Footer />
     </MainComponent>
   );

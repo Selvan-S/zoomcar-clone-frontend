@@ -9,6 +9,7 @@ function VehicleImageGallery({ hostCarImage }) {
   }, [hostCarImage]);
   return (
     <div className="flex md:flex-row max-md:flex-col gap-4 h-full image-gallery ">
+      {/* Default first image is shown. Changed according to the images clieck from image list */}
       <div>
         <ImageWithFallback
           src={active}
@@ -19,6 +20,7 @@ function VehicleImageGallery({ hostCarImage }) {
       </div>
       {hostCarImage.length > 0 && (
         <div className="grid max-sm:grid-cols-3 max-sm:gap-2 gap-4 place-items-center max-md:grid-rows-1 max-md:grid-cols-3 md:grid-rows-5 md:grid-cols-1">
+          {/* Display list of images in minimum size, clickable, change the active image, big image. */}
           {hostCarImage.map((imgelink, index) => (
             <div key={index}>
               <ImageWithFallback

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetchVehiclesAPI } from "../services/vehicleService";
+import { PostVehicleAPI, fetchVehiclesAPI } from "../services/vehicleService";
 
 export const VehicleContext = createContext();
 
@@ -25,6 +25,8 @@ const VehicleProvider = ({ children }) => {
     createdAt: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch vehicles by applied fileters
   const fetchVehicles = async () => {
     try {
       setIsLoading(true);
@@ -41,6 +43,19 @@ const VehicleProvider = ({ children }) => {
     fetchVehicles();
   }, [filters]);
 
+  // Create a Vehicle (Admin)
+  const createVehicle = async (vehicleDetails) => {
+    try {
+      setIsLoading(true);
+      const data = await PostVehicleAPI(vehicleDetails);
+      setVehicles([data, ...vehicles]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <VehicleContext.Provider
       value={{
@@ -52,6 +67,7 @@ const VehicleProvider = ({ children }) => {
         currentVehicleDetails,
         setCurrentVehicleDetails,
         isLoading,
+        createVehicle,
       }}
     >
       {children}

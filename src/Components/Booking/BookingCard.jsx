@@ -67,6 +67,7 @@ function BookingCard({ bookedVehicles, index }) {
           <p>Pickup Time : {bookedVehicles.startTime.substring(14)}</p>
           <p>Dropoff Time : {bookedVehicles.endTime.substring(14)}</p>
 
+          {/* Show Cancel and Completed buttons, only when the status is "booked" */}
           {bookedVehicles.status == "booked" && (
             <div>
               <div className="card-actions justify-end gap-x-2">
@@ -89,6 +90,7 @@ function BookingCard({ bookedVehicles, index }) {
               </div>
             </div>
           )}
+          {/* Display the current status, when the status is changed from "booked" */}
           {bookedVehicles.status != "booked" && (
             <div className="card-actions justify-end">
               <div
@@ -102,6 +104,7 @@ function BookingCard({ bookedVehicles, index }) {
               </div>
             </div>
           )}
+          {/* Show Reivew button, only when status is "booked", and isReviewGiven is false */}
           {bookedVehicles.status != "booked" &&
             !bookedVehicles.isReviewGiven && (
               <div className="card-actions justify-start">
@@ -117,6 +120,7 @@ function BookingCard({ bookedVehicles, index }) {
               </div>
             )}
           {loading && <FullScreenLoading />}
+          {/* Review modal, user can give ratings and comment */}
           <ReviewModal
             bookedVehicles={bookedVehicles}
             index={index}
