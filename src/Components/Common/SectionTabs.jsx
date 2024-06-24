@@ -1,8 +1,9 @@
 import React from "react";
 import FAQs from "./FAQs";
 import TripProtection from "./TripProtection";
+import Reviews from "../Review/Reviews";
 
-function SectionTabs() {
+function SectionTabs({ currentVehicleDetails }) {
   return (
     <div className="reivews-section">
       <div role="tablist" className="tabs tabs-lifted">
@@ -19,6 +20,9 @@ function SectionTabs() {
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
           <span className="uppercase text-xs font-bold">reviews</span>
+          <div>
+            <Reviews currentVehicleDetails={currentVehicleDetails} />
+          </div>
         </div>
         <input
           type="radio"

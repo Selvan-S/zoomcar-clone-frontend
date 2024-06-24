@@ -119,7 +119,7 @@ function UserProfile() {
             </p>
             <p className="font-sans text-xl leading-loose">{user.email}</p>
             <p className="ordinal text-md leading-loose">
-              Joined on : {formatDate(user.createdAt)}
+              Joined on : {formatDate(new Date(user.createdAt))}
             </p>
           </div>
           <form id="uploadForm" className="flex flex-col justify-center">

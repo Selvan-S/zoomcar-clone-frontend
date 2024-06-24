@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ImageWithFallback from "../Common/ImageWithFallback";
+import vehicleFallBack from "../../assets/placeholder.jpeg";
 
 function VehicleImageGallery({ hostCarImage }) {
-  const [active, setActive] = React.useState(
-    hostCarImage.length > 0
-      ? hostCarImage[0]
-      : "\\src\\assets\\placeholder.jpeg"
-  );
+  const [active, setActive] = useState(hostCarImage[0]);
+  useEffect(() => {
+    setActive(() => (!hostCarImage[0] ? vehicleFallBack : hostCarImage[0]));
+  }, [hostCarImage]);
   return (
     <div className="flex md:flex-row max-md:flex-col gap-4 h-full image-gallery ">
       <div>
         <ImageWithFallback
-          vehicleDetails={true}
           src={active}
-          fallback="\src\assets\placeholder.jpeg"
+          fallback={vehicleFallBack}
           alt={`gallery-image`}
           className="h-auto w-full rounded-lg object-cover object-center md:h-[480px]"
         />
@@ -24,9 +23,8 @@ function VehicleImageGallery({ hostCarImage }) {
             <div key={index}>
               <ImageWithFallback
                 makeImageActive={() => setActive(imgelink)}
-                vehicleDetails={true}
                 src={imgelink}
-                fallback="\src\assets\placeholder.jpeg"
+                fallback={vehicleFallBack}
                 alt={`gallery-image`}
                 className="h-20 max-w-full cursor-pointer rounded-lg object-cover object-center"
               />

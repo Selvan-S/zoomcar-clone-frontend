@@ -1,6 +1,7 @@
 const API_URL = import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL;
 const VEHICLES_BASE_URL = import.meta.env.VITE_VEHICLES_BASE_URL;
 
+// Get filtered Vehicles
 export const fetchVehiclesAPI = async (filters) => {
   const { category, minPrice, maxPrice } = filters;
   try {
@@ -17,6 +18,7 @@ export const fetchVehiclesAPI = async (filters) => {
   }
 };
 
+// Get specific vehicle
 export const fetchVehiclesById = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${VEHICLES_BASE_URL}/${id}`, {

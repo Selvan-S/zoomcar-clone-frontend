@@ -1,6 +1,6 @@
 import React from "react";
-import ImageWithFallback from "../Common/ImageWithFallback";
 import { useNavigate } from "react-router-dom";
+import GetHostCarImage from "./GetHostCarImage";
 
 function VehicleCard({ vehicle }) {
   const navigateTo = useNavigate();
@@ -45,35 +45,6 @@ function VehicleCard({ vehicle }) {
             {vehicle.availability ? "Available" : "Not Available"}
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function GetHostCarImage({ image, index, length, vehicleId }) {
-  const imgId = Math.min(index + 1, length);
-  const forward = ((index + 1) % length) + 1;
-  const previous = index === 0 ? length : index;
-
-  return (
-    <div id={`${vehicleId}${imgId}`} className="carousel-item relative w-full">
-      <ImageWithFallback
-        vehicleDetails={false}
-        src={`${image}`}
-        fallback="src\assets\placeholder.jpeg"
-        alt={`hostCarImage`}
-        className="custom-image"
-      />
-      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-        <a
-          href={`#${vehicleId}${previous}`}
-          className="btn btn-circle max-md:text-xs"
-        >
-          ❮
-        </a>
-        <a href={`#${vehicleId}${forward}`} className="btn btn-circle">
-          ❯
-        </a>
       </div>
     </div>
   );

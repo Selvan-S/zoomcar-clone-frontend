@@ -7,9 +7,12 @@ import React, {
 } from "react";
 import { createBookingAPI } from "../services/bookingService";
 import { getToken } from "../Auth/auth";
+import { useAuth } from "./AuthContext";
 
 export const BookingContext = createContext();
+
 const BookingProvider = ({ children }) => {
+  const { user } = useAuth();
   const API_URL = import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL;
   const BOOKING_BASE_URL = import.meta.env.VITE_BOOKINGS_BASE_URL;
 
@@ -29,8 +32,10 @@ const BookingProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch user bookings
   const fetchBookings = async () => {
     setLoading(true);
+    console.log("fetchBookings");
     try {
       const response = await fetch(`${API_URL}/${BOOKING_BASE_URL}`, {
         method: "GET",
@@ -38,7 +43,8 @@ const BookingProvider = ({ children }) => {
           Authorization: `Bearer ${getToken()}`,
         },
       });
-      setBookings(response.userBookings);
+      const data = await response.json();
+      setBookings(data.userBookings);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -48,8 +54,9 @@ const BookingProvider = ({ children }) => {
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [user]);
 
+  // Book a vehicle
   const createBooking = async (details) => {
     try {
       const data = await createBookingAPI(details);
@@ -58,12 +65,17 @@ const BookingProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  // useMemo to preventing re-rendering
   const value = useMemo(
     () => ({
+      bookings,
+      setBookings,
       protectionPackage,
       setProtectionPackage,
       createBooking,
       loading,
+      setLoading,
       error,
       pickupDateAndDropOffDate,
       setPickupDateAndDropOffDate,
@@ -74,6 +86,7 @@ const BookingProvider = ({ children }) => {
     }),
     [
       protectionPackage,
+      bookings,
       loading,
       error,
       pickupDateAndDropOffDate,
@@ -81,6 +94,7 @@ const BookingProvider = ({ children }) => {
     ]
   );
   return (
+    // Context Provider for Booking
     <BookingContext.Provider value={value}>{children}</BookingContext.Provider>
   );
 };

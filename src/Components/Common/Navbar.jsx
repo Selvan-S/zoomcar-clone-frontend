@@ -36,6 +36,16 @@ function Navbar() {
             tabIndex={0}
             className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
           >
+            {user && user?.role == "admin" && (
+              <li>
+                <button
+                  className="justify-between"
+                  onClick={() => navigate("/admin")}
+                >
+                  Admin
+                </button>
+              </li>
+            )}
             <li>
               <button
                 className="justify-between"
@@ -44,6 +54,16 @@ function Navbar() {
                 Profile
               </button>
             </li>
+            {user && (
+              <li>
+                <button
+                  className="justify-between"
+                  onClick={() => navigate("/user/bookings")}
+                >
+                  Your Bookings
+                </button>
+              </li>
+            )}
             <li>
               {user ? (
                 <button onClick={() => logout()}>Logout</button>

@@ -1,12 +1,11 @@
 import React from "react";
-
+import BackgroundImg from "../../assets/homeBackgroundImg.jpeg";
 function HeroContent({ children }) {
   return (
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1565043666747-69f6646db940?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        backgroundImage: `url(${BackgroundImg})`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

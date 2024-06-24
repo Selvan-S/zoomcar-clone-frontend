@@ -5,7 +5,6 @@ const ImageWithFallback = ({
   fallback,
   alt,
   className,
-  vehicleDetails,
   makeImageActive,
 }) => {
   const [imageStatus, setImageStatus] = useState("loading");
@@ -26,26 +25,16 @@ const ImageWithFallback = ({
       {imageStatus === "error" && (
         <img src={fallback} alt="Fallback" className={className} />
       )}
-      {vehicleDetails ? (
-        <img
-          src={src}
-          onClick={makeImageActive}
-          alt={alt}
-          className={className}
-          onLoad={handleImageLoaded}
-          onError={handleImageError}
-          style={{ display: imageStatus === "loaded" ? "block" : "none" }}
-        />
-      ) : (
-        <img
-          src={src}
-          alt={alt}
-          className="image-main"
-          onLoad={handleImageLoaded}
-          onError={handleImageError}
-          style={{ display: imageStatus === "loaded" ? "block" : "none" }}
-        />
-      )}
+
+      <img
+        src={src}
+        onClick={makeImageActive}
+        alt={alt}
+        className={className}
+        onLoad={handleImageLoaded}
+        onError={handleImageError}
+        style={{ display: imageStatus === "loaded" ? "block" : "none" }}
+      />
     </div>
   );
 };

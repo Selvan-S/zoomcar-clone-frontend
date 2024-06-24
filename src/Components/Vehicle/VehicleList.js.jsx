@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import FullScreenLoading from "../Common/FullScreenLoading";
+import Navbar from "../Common/Navbar";
+import MainComponent from "../MainComponent/MainComponent";
 import { VehicleContext } from "../context/VehicleContext";
 import VehicleCard from "./VehicleCard";
-import { useLocation, useSearchParams } from "react-router-dom";
-import MainComponent from "../MainComponent/MainComponent";
-import Navbar from "../Common/Navbar";
 import VehicleFilterDrawer from "./VehicleFilterDrawer";
 
 const VehicleList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = window.location.href;
   const searchQuery = location.split("?")[1];
-  const { setFilters, setCurrentSearchLocation, filters } =
+  const { setFilters, setCurrentSearchLocation, isLoading } =
     useContext(VehicleContext);
   let category = searchParams.get("carType");
   let minPrice = searchParams.get("gte");
@@ -41,6 +42,7 @@ const VehicleList = () => {
             ))}
           </div>
         </div>
+        {isLoading && <FullScreenLoading />}
       </VehicleFilterDrawer>
     </MainComponent>
   );

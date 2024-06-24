@@ -21,14 +21,19 @@ const VehicleProvider = ({ children }) => {
     seats: 0,
     availability: false,
     pricePerHour: 0,
+    reviews: [],
     createdAt: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const fetchVehicles = async () => {
     try {
+      setIsLoading(true);
       const data = await fetchVehiclesAPI(filters);
       setVehicles(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,6 +51,7 @@ const VehicleProvider = ({ children }) => {
         currentSearchLocation,
         currentVehicleDetails,
         setCurrentVehicleDetails,
+        isLoading,
       }}
     >
       {children}
