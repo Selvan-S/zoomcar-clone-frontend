@@ -3,6 +3,7 @@ import ImageWithFallback from "../Common/ImageWithFallback";
 import vehicleFallbackImg from "../../assets/placeholder.jpeg";
 
 function GetHostCarImage({ image, index, length, vehicleId }) {
+  // Vehicle Image forward skip and previous skip calculation
   const imgId = Math.min(index + 1, length);
   const forward = ((index + 1) % length) + 1;
   const previous = index === 0 ? length : index;

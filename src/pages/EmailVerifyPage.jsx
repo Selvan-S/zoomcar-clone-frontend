@@ -9,7 +9,7 @@ function EmailVerifyPage() {
     <div>
       <MainComponent>
         <Navbar />
-        <div className="artboard phone-3 mx-auto mt-10">
+        <div className="max-w-screen-sm min-h-[736px] mx-auto my-10 px-4">
           <VerifyEmailForm />
         </div>
         <Footer />

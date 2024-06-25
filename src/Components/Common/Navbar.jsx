@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
+import HeadShortPlaceholder from "../../assets/headshort.jpeg";
 function Navbar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -28,7 +28,7 @@ function Navbar() {
                   {user.name.substring(0, 1)}
                 </span>
               ) : (
-                <img alt="avatar" src="src/assets/headshort.jpeg" />
+                <img alt="avatar" src={HeadShortPlaceholder} />
               )}
             </div>
           </div>

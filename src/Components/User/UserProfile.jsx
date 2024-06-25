@@ -12,6 +12,7 @@ import {
 import { useSnackbar } from "notistack";
 import { updateUserAPI } from "../services/userService";
 import BackToGivenLocation from "../Common/BackToGivenLocation";
+import HeadshortPlaceholder from "../../assets/headshort.jpeg";
 
 function UserProfile() {
   const { user, setUser } = useAuth();
@@ -78,9 +79,13 @@ function UserProfile() {
             <div className="avatar">
               <div className="w-56 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                 {user?.userAvatarLink ? (
-                  <img src={user.userAvatarLink} />
+                  <img alt="profile picture" src={user.userAvatarLink} />
+                ) : user?.name ? (
+                  <span className="uppercase text-3xl">
+                    {user.name.substring(0, 1)}
+                  </span>
                 ) : (
-                  <img src="src\assets\headshort.jpeg" />
+                  <img alt="placeholder" src={HeadshortPlaceholder} />
                 )}
               </div>
             </div>

@@ -19,11 +19,11 @@ export function ViewDetailsPopup({
 
   return (
     <div>
-      <dialog id="my_modal_3" className="modal p-4">
+      <dialog id="my_modal_3" className="modal">
         <div className="modal-box max-sm:fixed max-sm:bottom-0 max-sm:w-full max-sm:max-w-full max-sm:rounded-l-none max-sm:rounded-b-none">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">
               ✕
             </button>
           </form>
@@ -91,7 +91,7 @@ export function ViewDetailsPopup({
                   })}
                 </dd>
               </div>
-              <div className="w-full px-4 py-6">
+              <div className="w-full px-4 pt-6">
                 {currentVehicleDetails?.availability ? (
                   <Link
                     to={user ? `/vehicle/booking/${vehicleId}` : "/login"}

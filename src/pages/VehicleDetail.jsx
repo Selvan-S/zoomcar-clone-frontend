@@ -66,13 +66,14 @@ const VehicleDetail = () => {
               currentVehicleDetails={currentVehicleDetails}
               totalBookedHours={totalBookedHours}
             />
-            {/* Mobile view - price details and confirms booking */}
-            <SummaryAmount
-              currentVehicleDetails={currentVehicleDetails}
-              totalBookedHours={totalBookedHours}
-            />
+            {/* Full screeen loading */}
+            {loadingCurrentVehicle && <FullScreenLoading />}
           </div>
-          {loadingCurrentVehicle && <FullScreenLoading />}
+          {/* Mobile view - price details and confirms booking */}
+          <SummaryAmount
+            currentVehicleDetails={currentVehicleDetails}
+            totalBookedHours={totalBookedHours}
+          />
         </div>
       </MainComponent>
     </div>
