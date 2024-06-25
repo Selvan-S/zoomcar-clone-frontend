@@ -1,4 +1,4 @@
-import { getToken } from "../Auth/auth";
+import { getToken } from "./auth";
 
 const API_URL = import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL;
 const VEHICLES_BASE_URL = import.meta.env.VITE_VEHICLES_BASE_URL;

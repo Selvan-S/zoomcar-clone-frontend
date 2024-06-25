@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import FullScreenLoading from "../Common/FullScreenLoading";
-import Navbar from "../Common/Navbar";
-import MainComponent from "../MainComponent/MainComponent";
-import { VehicleContext } from "../context/VehicleContext";
-import VehicleCard from "./VehicleCard";
-import VehicleFilterDrawer from "./VehicleFilterDrawer";
+import FullScreenLoading from "../Components/Common/FullScreenLoading";
+import Navbar from "../Components/Common/Navbar";
+import MainComponent from "../Components/MainComponent/MainComponent";
+import VehicleCard from "../Components/Vehicle/VehicleCard";
+import VehicleFilterDrawer from "../Components/Vehicle/VehicleFilterDrawer";
+import { VehicleContext } from "../Components/context/VehicleContext";
 
 const VehicleList = () => {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,10 +1,10 @@
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../Components/context/AuthContext";
-import { useBooking } from "../Components/context/BookingContext";
-import FullScreenLoading from "../Components/Common/FullScreenLoading";
-import { getToken } from "../Components/Auth/auth";
+import { useAuth } from "../context/AuthContext";
+import { useBooking } from "../context/BookingContext";
+import FullScreenLoading from "../Common/FullScreenLoading";
+import { getToken } from "../services/auth";
 import { useSnackbar } from "notistack";
 function BookingForm() {
   const { id } = useParams();

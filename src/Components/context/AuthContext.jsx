@@ -6,7 +6,7 @@ import {
   loginAPI,
   passwordResetAPI,
   registerAPI,
-} from "../Auth/auth";
+} from "../services/auth";
 import { fetchUserDetails } from "../services/userService";
 
 const AuthContext = createContext();

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import MainComponent from "../MainComponent/MainComponent";
-import Navbar from "../Common/Navbar";
-import { useBooking } from "../context/BookingContext";
-import BookingCard from "./BookingCard";
-import BackToGivenLocation from "../Common/BackToGivenLocation";
+import React from "react";
+import BookingCard from "../Components/Booking/BookingCard";
+import BackToGivenLocation from "../Components/Common/BackToGivenLocation";
+import Navbar from "../Components/Common/Navbar";
+import MainComponent from "../Components/MainComponent/MainComponent";
+import { useBooking } from "../Components/context/BookingContext";
 
 function UserBookings() {
   const { bookings } = useBooking();

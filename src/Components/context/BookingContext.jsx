@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import { createBookingAPI } from "../services/bookingService";
-import { getToken } from "../Auth/auth";
+import { getToken } from "../services/auth";
 import { useAuth } from "./AuthContext";
 
 export const BookingContext = createContext();

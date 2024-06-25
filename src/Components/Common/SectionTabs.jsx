@@ -31,6 +31,7 @@ function SectionTabs({ currentVehicleDetails }) {
             <Reviews currentVehicleDetails={currentVehicleDetails} />
           </div>
         </div>
+
         {/* Trip protection */}
         <input
           type="radio"
@@ -54,6 +55,7 @@ function SectionTabs({ currentVehicleDetails }) {
           <p className="text-xs">Choose a plan & secure your trip</p>
           <TripProtection />
         </div>
+
         {/* FAQs */}
         <input
           type="radio"

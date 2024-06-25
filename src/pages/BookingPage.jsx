@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import BookingForm from "../Components/Booking/BookingForm";
 import BackToVehicleDetails from "../Components/Common/BackToVehicleDetails";
+import Footer from "../Components/Common/Footer";
 import Navbar from "../Components/Common/Navbar";
 import TimeRangeSlider from "../Components/Common/TimeRangeSlider";
 import MainComponent from "../Components/MainComponent/MainComponent";
-import BookingForm from "./BookingForm";
-import Footer from "../Components/Common/Footer";
 
 function BookingPage() {
   const { id } = useParams();

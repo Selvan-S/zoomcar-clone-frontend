@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BookingAside from "../Booking/BookingAside";
-import SummaryAmount from "../Booking/SummaryAmount";
-import BackButton from "../Common/BackButton";
-import Navbar from "../Common/Navbar";
-import SectionTabs from "../Common/SectionTabs";
-import TimeRangeSlider from "../Common/TimeRangeSlider";
-import MainComponent from "../MainComponent/MainComponent";
-import { useBooking } from "../context/BookingContext";
-import { VehicleContext } from "../context/VehicleContext";
-import { fetchVehiclesById } from "../services/vehicleService";
-import SingleVehicleDetails from "./SingleVehicleDetails";
-import FullScreenLoading from "../Common/FullScreenLoading";
+import BookingAside from "../Components/Booking/BookingAside";
+import SummaryAmount from "../Components/Booking/SummaryAmount";
+import BackButton from "../Components/Common/BackButton";
+import Navbar from "../Components/Common/Navbar";
+import SectionTabs from "../Components/Common/SectionTabs";
+import TimeRangeSlider from "../Components/Common/TimeRangeSlider";
+import MainComponent from "../Components/MainComponent/MainComponent";
+import { useBooking } from "../Components/context/BookingContext";
+import { VehicleContext } from "../Components/context/VehicleContext";
+import { fetchVehiclesById } from "../Components/services/vehicleService";
+import SingleVehicleDetails from "../Components/Vehicle/SingleVehicleDetails";
+import FullScreenLoading from "../Components/Common/FullScreenLoading";
 
 const VehicleDetail = () => {
   const { id } = useParams();

@@ -1,4 +1,4 @@
-import { getToken } from "../Auth/auth";
+import { getToken } from "./auth";
 
 // Function to fetch user details
 const fetchUserDetails = async () => {
