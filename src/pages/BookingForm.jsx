@@ -99,6 +99,12 @@ function BookingForm() {
       <div className="grid grid-cols-3 mb-5 items-center">
         <dl className="divide-y divide-gray-400 col-span-3">
           <div className="w-full px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-0 flex justify-center max-sm:justify-between items-center">
+            <dt className="text-sm font-medium leading-6 ">Vehicle name</dt>
+            <dd className="mt-1 text-sm leading-6  sm:mt-0 text-right">
+              {currentVehicleDetails.name}
+            </dd>
+          </div>
+          <div className="w-full px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-0 flex justify-center max-sm:justify-between items-center">
             <dt className="text-sm font-medium leading-6 ">
               Trip Amount (this does not include fuel)
             </dt>

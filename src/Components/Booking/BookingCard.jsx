@@ -68,28 +68,29 @@ function BookingCard({ bookedVehicles, index }) {
           <p>Dropoff Time : {bookedVehicles.endTime.substring(14)}</p>
 
           {/* Show Cancel and Completed buttons, only when the status is "booked" */}
-          {bookedVehicles.status == "booked" && (
-            <div>
-              <div className="card-actions justify-end gap-x-2">
-                <button
-                  className="btn btn-error"
-                  value={"cancelled"}
-                  disabled={loading}
-                  onClick={handleUpdateBooking}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="btn btn-success"
-                  value={"completed"}
-                  disabled={loading}
-                  onClick={handleUpdateBooking}
-                >
-                  Completed
-                </button>
+          {bookedVehicles.status == "booked" &&
+            bookedVehicles.paymentStatus != "pending" && (
+              <div>
+                <div className="card-actions justify-end gap-x-2">
+                  <button
+                    className="btn btn-error"
+                    value={"cancelled"}
+                    disabled={loading}
+                    onClick={handleUpdateBooking}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="btn btn-success"
+                    value={"completed"}
+                    disabled={loading}
+                    onClick={handleUpdateBooking}
+                  >
+                    Completed
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
           {/* Display the current status, when the status is changed from "booked" */}
           {bookedVehicles.status != "booked" && (
             <div className="card-actions justify-end">
@@ -104,9 +105,24 @@ function BookingCard({ bookedVehicles, index }) {
               </div>
             </div>
           )}
+          {/* Display the current payment status */}
+          {bookedVehicles.paymentStatus && (
+            <div className="card-actions justify-end">
+              <div
+                className={`${
+                  bookedVehicles.paymentStatus == "pending"
+                    ? "text-error"
+                    : "text-success"
+                } badge badge-outline`}
+              >
+                Payment: {bookedVehicles.paymentStatus}
+              </div>
+            </div>
+          )}
           {/* Show Reivew button, only when status is "booked", and isReviewGiven is false */}
           {bookedVehicles.status != "booked" &&
-            !bookedVehicles.isReviewGiven && (
+            !bookedVehicles.isReviewGiven &&
+            bookedVehicles.paymentStatus != "pending" && (
               <div className="card-actions justify-start">
                 {/* To open review_modal */}
                 <button
