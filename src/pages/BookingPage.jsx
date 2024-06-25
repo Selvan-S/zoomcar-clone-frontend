@@ -5,6 +5,7 @@ import Navbar from "../Components/Common/Navbar";
 import TimeRangeSlider from "../Components/Common/TimeRangeSlider";
 import MainComponent from "../Components/MainComponent/MainComponent";
 import BookingForm from "./BookingForm";
+import Footer from "../Components/Common/Footer";
 
 function BookingPage() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ function BookingPage() {
         <TimeRangeSlider />
         <BookingForm />
       </div>
+      <Footer />
     </MainComponent>
   );
 }

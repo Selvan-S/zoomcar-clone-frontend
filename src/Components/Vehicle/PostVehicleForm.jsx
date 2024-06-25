@@ -99,8 +99,8 @@ function PostVehicleForm() {
                 <span className="ml-2 mt-2">Add image</span>
               </div>
             ) : (
-              <div className="">
-                <div className="grid gap-1 place-items-center grid-cols-3">
+              <div className="display-uploaded-image">
+                <div className="flex flex-row flex-wrap gap-1 justify-start max-sm:justify-center">
                   {values.hostCarImage.map((imgelink, index) => (
                     <div key={index}>
                       <ImageWithFallback

@@ -119,12 +119,6 @@ const TimeRangeSlider = () => {
         msToHours(DropoffMilliSeconds) - msToHours(PickupMilliSeconds)
       );
 
-      // console.log(
-      //   new Date(PickupMilliSeconds).getHours(),
-      //   new Date(DropoffMilliSeconds).getHours(),
-      //   totalBookedHours
-      // );
-
       const startDateCheck =
         typeof startDate == "object"
           ? startDate?.toISOString().substring(0, 10)

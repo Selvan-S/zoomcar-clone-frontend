@@ -22,10 +22,8 @@ function BookingCard({ bookedVehicles, index }) {
       });
       bookings[index] = { ...bookedVehicles, status: e.target.value };
       setBookings([...bookings]);
-      console.log(bookings);
-      console.log(updatedBooking);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -67,11 +65,40 @@ function BookingCard({ bookedVehicles, index }) {
           <p>Pickup Time : {bookedVehicles.startTime.substring(14)}</p>
           <p>Dropoff Time : {bookedVehicles.endTime.substring(14)}</p>
 
+          {/* Display the current payment status */}
+          {bookedVehicles.paymentStatus && (
+            <div className="card-actions justify-end">
+              <div
+                className={`${
+                  bookedVehicles.paymentStatus == "pending"
+                    ? "text-error"
+                    : "text-success"
+                } badge badge-outline`}
+              >
+                Payment: {bookedVehicles.paymentStatus}
+              </div>
+            </div>
+          )}
+          {/* Display the current status, when the status is changed from "booked" */}
+          {bookedVehicles.status != "booked" && (
+            <div className="card-actions justify-end">
+              <div
+                className={`${
+                  bookedVehicles.status == "completed"
+                    ? "text-success"
+                    : "text-error"
+                } badge badge-outline`}
+              >
+                Status: {bookedVehicles.status}
+              </div>
+            </div>
+          )}
+
           {/* Show Cancel and Completed buttons, only when the status is "booked" */}
           {bookedVehicles.status == "booked" &&
             bookedVehicles.paymentStatus != "pending" && (
-              <div>
-                <div className="card-actions justify-end gap-x-2">
+              <div className="">
+                <div className="flex justify-between card-actions gap-x-2">
                   <button
                     className="btn btn-error"
                     value={"cancelled"}
@@ -91,34 +118,7 @@ function BookingCard({ bookedVehicles, index }) {
                 </div>
               </div>
             )}
-          {/* Display the current status, when the status is changed from "booked" */}
-          {bookedVehicles.status != "booked" && (
-            <div className="card-actions justify-end">
-              <div
-                className={`${
-                  bookedVehicles.status == "completed"
-                    ? "text-success"
-                    : "text-error"
-                } badge badge-outline`}
-              >
-                {bookedVehicles.status}
-              </div>
-            </div>
-          )}
-          {/* Display the current payment status */}
-          {bookedVehicles.paymentStatus && (
-            <div className="card-actions justify-end">
-              <div
-                className={`${
-                  bookedVehicles.paymentStatus == "pending"
-                    ? "text-error"
-                    : "text-success"
-                } badge badge-outline`}
-              >
-                Payment: {bookedVehicles.paymentStatus}
-              </div>
-            </div>
-          )}
+
           {/* Show Reivew button, only when status is "booked", and isReviewGiven is false */}
           {bookedVehicles.status != "booked" &&
             !bookedVehicles.isReviewGiven &&

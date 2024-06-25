@@ -8,6 +8,7 @@ import FullScreenLoading from "../Common/FullScreenLoading";
 import { uploadImageToImgur } from "../../utils/uploadImageToImgur";
 import { useSnackbar } from "notistack";
 import { updateUserAPI } from "../services/userService";
+import BackToGivenLocation from "../Common/BackToGivenLocation";
 
 function UserProfile() {
   const { user, setUser } = useAuth();
@@ -66,6 +67,8 @@ function UserProfile() {
   return (
     <MainComponent>
       <Navbar />
+      <BackToGivenLocation location={"/"} />
+
       <div className="flex justify-center my-10 flex-col items-center">
         <div className="flex items-center gap-6 flex-col p-4 rounded-lg artboard phone-1 bg-base-100">
           <div>

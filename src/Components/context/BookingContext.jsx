@@ -35,7 +35,6 @@ const BookingProvider = ({ children }) => {
   // Fetch user bookings
   const fetchBookings = async () => {
     setLoading(true);
-    console.log("fetchBookings");
     try {
       const response = await fetch(`${API_URL}/${BOOKING_BASE_URL}`, {
         method: "GET",

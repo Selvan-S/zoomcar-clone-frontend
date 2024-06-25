@@ -50,7 +50,6 @@ const VehicleListFilter = () => {
     navigate(
       `/search?carType=${filters.category}&gte=${filters.minPrice}&lte=${filters.maxPrice}`
     );
-    console.log("VehicleListFilter");
   };
 
   return (

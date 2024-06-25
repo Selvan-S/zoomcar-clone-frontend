@@ -28,7 +28,6 @@ function ReviewModal({ vehicleId, userId, BookingId, index, bookedVehicles }) {
           .then((data) => {
             bookings[index] = { ...bookedVehicles, isReviewGiven: true };
             setBookings([...bookings]);
-            console.log(bookings);
           })
           .catch((error) => console.error(error))
           .finally(() => {

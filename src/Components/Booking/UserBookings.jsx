@@ -3,6 +3,7 @@ import MainComponent from "../MainComponent/MainComponent";
 import Navbar from "../Common/Navbar";
 import { useBooking } from "../context/BookingContext";
 import BookingCard from "./BookingCard";
+import BackToGivenLocation from "../Common/BackToGivenLocation";
 
 function UserBookings() {
   const { bookings } = useBooking();
@@ -10,6 +11,7 @@ function UserBookings() {
     <div>
       <MainComponent>
         <Navbar />
+        <BackToGivenLocation location={"/"} />
         {/* Display user Bookings */}
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-4 p-2">
           {!bookings?.length ? (

@@ -19,6 +19,7 @@ function App() {
   return (
     <Routes>
       <Route path="*" element={<PageNotFound />} />
+      {/* Admin page to post vehicle */}
       <Route
         path="/admin"
         element={
@@ -27,42 +28,45 @@ function App() {
       />
       {/* Home page */}
       <Route path="/" element={<HomePage />} />
+
+      {/* --- Authentication --- */}
       {/* Login page */}
       <Route
         path="/login"
         element={user ? <Navigate to={"/"} /> : <LoginPage />}
       />
+      {/* Signup page */}
       <Route
         path="/signup"
         element={user ? <Navigate to={"/"} /> : <SignupPage />}
       />
+      {/* Email verification page, to sent password resent link  */}
       <Route
         path="/verifyEmail"
         element={user ? <Navigate to={"/"} /> : <EmailVerifyPage />}
       />
+      {/* Reset password page */}
       <Route
         path="/passwordreset/:resetToken"
         element={user ? <Navigate to={"/"} /> : <PasswordResetPage />}
       />
 
+      {/* --- User --- */}
       {/* User profile page. user can upload display picture here. */}
       <Route
         path="/profile"
         element={user ? <UserProfile /> : <Navigate to={"/login"} />}
       />
       {/* User Bookings, and can add review here. Found on Navbar profile dropdown*/}
-      <Route
-        path="/user/bookings"
-        element={user ? <UserBookings /> : <Navigate to={"/login"} />}
-      />
+      <Route path="/user/bookings" element={<UserBookings />} />
 
+      {/* --- Vehicle --- */}
       {/* Filter the vehicles */}
       <Route path="/search" element={<VehicleList />} />
       {/* Specific vehicle details page, can confirm booking here. */}
       <Route path="/vehicle/details/:id" element={<VehicleDetail />} />
       {/* Checkout the vehicle*/}
       <Route path="/vehicle/booking/:id" element={<BookingPage />} />
-
     </Routes>
   );
 }
