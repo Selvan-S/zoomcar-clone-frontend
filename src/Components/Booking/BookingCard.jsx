@@ -6,6 +6,7 @@ import ReviewModal from "../Review/ReviewModal";
 import { useBooking } from "../context/BookingContext";
 import { updateBookingAPI } from "../services/bookingService";
 import { formatDate } from "../../utils/formatDate";
+
 function BookingCard({ bookedVehicles, index }) {
   const { setLoading, loading, bookings, setBookings } = useBooking();
 

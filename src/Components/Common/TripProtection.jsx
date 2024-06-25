@@ -9,7 +9,7 @@ function TripProtection() {
   });
   return (
     <div
-      className={`grid grid-cols-3 grid-rows-1 gap-x-2 max-sm:grid-rows-2 max-sm:grid-cols-2 mt-4 gap-2
+      className={`grid grid-cols-3 grid-rows-1 gap-x-2 max-sm:grid-rows-2 max-sm:grid-cols-2 mt-4 gap-2 max-w-4xl
     `}
     >
       <button
@@ -53,7 +53,7 @@ function TripProtection() {
       <button
         className={`card bg-base-100 shadow-xl cursor-pointer ${
           activeTripProtection["active"] == "359"
-            ? "border border-primary text-success"
+            ? "border border-success text-success"
             : ""
         }`}
         onClick={() => {

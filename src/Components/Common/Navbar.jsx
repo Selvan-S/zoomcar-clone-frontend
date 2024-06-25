@@ -34,17 +34,20 @@ function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            className="mt-3 z-50 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-64"
           >
             <li>
-              <button className="justify-between" onClick={() => navigate("/")}>
+              <button
+                className="justify-between py-2 text-base max-sm:text-sm"
+                onClick={() => navigate("/")}
+              >
                 Home
               </button>
             </li>
             {user && user?.role == "admin" && (
               <li>
                 <button
-                  className="justify-between"
+                  className="justify-between py-2 text-base max-sm:text-sm"
                   onClick={() => navigate("/admin")}
                 >
                   Admin
@@ -53,7 +56,7 @@ function Navbar() {
             )}
             <li>
               <button
-                className="justify-between"
+                className="justify-between py-2 text-base max-sm:text-sm"
                 onClick={() => navigate("/profile")}
               >
                 Profile
@@ -62,7 +65,7 @@ function Navbar() {
             {user && (
               <li>
                 <button
-                  className="justify-between"
+                  className="justify-between py-2 text-base max-sm:text-sm"
                   onClick={() => navigate("/user/bookings")}
                 >
                   Your Bookings
@@ -71,9 +74,19 @@ function Navbar() {
             )}
             <li>
               {user ? (
-                <button onClick={() => logout()}>Logout</button>
+                <button
+                  onClick={() => logout()}
+                  className="py-3 text-lg max-sm:text-sm"
+                >
+                  Logout
+                </button>
               ) : (
-                <button onClick={() => navigate("/login")}>Login</button>
+                <button
+                  onClick={() => navigate("/login")}
+                  className="py-3 text-base max-sm:text-sm"
+                >
+                  Login
+                </button>
               )}
             </li>
           </ul>

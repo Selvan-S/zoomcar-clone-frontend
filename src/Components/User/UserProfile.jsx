@@ -5,7 +5,10 @@ import Navbar from "../Common/Navbar";
 import Footer from "../Common/Footer";
 import { formatDate } from "../../utils/formatDate";
 import FullScreenLoading from "../Common/FullScreenLoading";
-import { uploadImageToImgur } from "../../utils/uploadImageToImgur";
+import {
+  handleFileChange,
+  uploadImageToImgur,
+} from "../../utils/uploadImageToImgur";
 import { useSnackbar } from "notistack";
 import { updateUserAPI } from "../services/userService";
 import BackToGivenLocation from "../Common/BackToGivenLocation";

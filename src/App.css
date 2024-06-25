@@ -16,7 +16,7 @@ body {
 }
 
 .reivews-section {
-  height: 75vh;
+  height: 100vh;
   overflow-y: scroll;
   width: 70%;
 }
