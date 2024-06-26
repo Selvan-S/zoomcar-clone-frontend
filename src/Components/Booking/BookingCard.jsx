@@ -63,8 +63,12 @@ function BookingCard({ bookedVehicles, index }) {
           <p>
             End Date : {formatDate(bookedVehicles.endDate).substring(0, 12)}
           </p>
-          <p>Pickup Time : {bookedVehicles.startTime.substring(14)}</p>
-          <p>Dropoff Time : {bookedVehicles.endTime.substring(14)}</p>
+          <p>
+            Pickup Time : {formatDate(bookedVehicles.startTime).substring(14)}
+          </p>
+          <p>
+            Dropoff Time : {formatDate(bookedVehicles.endTime).substring(14)}
+          </p>
 
           {/* Display the current payment status */}
           {bookedVehicles.paymentStatus && (

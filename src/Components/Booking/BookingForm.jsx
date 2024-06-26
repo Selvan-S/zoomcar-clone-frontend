@@ -40,7 +40,6 @@ function BookingForm() {
     (currentVehicleDetails?.pricePerHour || 0) * totalBookedHours;
   const totalPrice = +protectionPackage.selectedPrice + 99 + priceOfTheVehicle;
 
-  // Handles the vehicle checkout
   async function handleCheckout() {
     setIsloading(true);
     const stripe = await loadStripe(
@@ -79,12 +78,18 @@ function BookingForm() {
         return res.json().then((json) => Promise.reject(json));
       })
       .then((session) => {
-        enqueueSnackbar("Success: Redirecting to checkout page", {
-          variant: "success",
-        });
-        stripe.redirectToCheckout({
-          sessionId: session.id,
-        });
+        if (session.error) {
+          enqueueSnackbar(session.error, {
+            variant: "error",
+          });
+        } else {
+          enqueueSnackbar("Success: Redirecting to checkout page", {
+            variant: "success",
+          });
+          stripe.redirectToCheckout({
+            sessionId: session.id,
+          });
+        }
       })
       .catch((e) => {
         console.error(e.error);
