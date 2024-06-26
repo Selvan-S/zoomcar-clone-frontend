@@ -26,8 +26,8 @@ const TimeRangeSlider = () => {
   const today = now.startOf("day").toDate();
 
   const [dateRange, setDateRange] = useState({
-    startDate: pickupDateAndDropOffDate?.startDate || today,
-    endDate: pickupDateAndDropOffDate?.endDate || today,
+    startDate: today,
+    endDate: today,
   });
   const [pickupTime, setPickupTime] = useState(
     Math.max(currentMinutes, 12 * MINUTES_IN_HOUR)
