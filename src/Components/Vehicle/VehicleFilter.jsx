@@ -20,7 +20,7 @@ const VehicleFilter = () => {
     <div className="vehicle-filter flex gap-4 w-full items-end max-md:flex-col max-md:items-center">
       <label className="form-control max-w-xs md:w-1/3 w-full">
         <div className="label">
-          <span className="label-text" onChange={handleFilterChange}>
+          <span className="label-text text-base" onChange={handleFilterChange}>
             Choose a car type:
           </span>
         </div>
@@ -40,7 +40,7 @@ const VehicleFilter = () => {
       </label>
       <div className="flex flex-row md:gap-4 gap-2 md:w-1/2">
         <label className="form-control items-center md:w-full">
-          Min Price:
+          Min Hourly Rate:
           <input
             type="number"
             className="input input-bordered w-full max-w-xs"
@@ -50,7 +50,7 @@ const VehicleFilter = () => {
           />
         </label>
         <label className="form-control items-center md:w-full">
-          Max Price:
+          Max Hourly Rate:
           <input
             type="number"
             className="input input-bordered w-full max-w-xs"
