@@ -6,7 +6,7 @@ function VehicleCard({ vehicle }) {
   const navigateTo = useNavigate();
   return (
     <div className="card max-sm:w-full max-md:w-72 w-96 bg-base-100 shadow-xl">
-      {vehicle.hostCarImage.length ? (
+      {vehicle.hostCarImage?.length ? (
         <div className="carousel w-full">
           {vehicle.hostCarImage.map((image, index) => (
             <GetHostCarImage

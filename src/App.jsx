@@ -1,31 +1,44 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/HomePage";
-import VehicleList from "./pages/VehicleList.js.jsx";
+import UpdateVehiclePage from "./Components/Admin/UpdateVehiclePage.jsx";
 import PageNotFound from "./Components/Common/PageNotFound.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import { useAuth } from "./Components/context/AuthContext.jsx";
 import UserProfile from "./Components/User/UserProfile.jsx";
+import { useAuth } from "./Components/context/AuthContext.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
-import VehicleDetail from "./pages/VehicleDetail.jsx";
 import BookingPage from "./pages/BookingPage.jsx";
-import UserBookings from "./pages/UserBookings.jsx";
-import SignupPage from "./pages/SignupPage.jsx";
 import EmailVerifyPage from "./pages/EmailVerifyPage.jsx";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage.jsx";
 import PasswordResetPage from "./pages/PasswordResetPage.jsx";
+import SignupPage from "./pages/SignupPage.jsx";
+import UserBookings from "./pages/UserBookings.jsx";
+import VehicleDetail from "./pages/VehicleDetail.jsx";
+import VehicleList from "./pages/VehicleList.js.jsx";
 
 function App() {
   const { user } = useAuth();
   return (
     <Routes>
       <Route path="*" element={<PageNotFound />} />
-      {/* Admin page to post vehicle */}
+      {/* Admin page for post, edit, view and update vehicles  */}
       <Route
         path="/admin"
         element={
           user && user?.role == "admin" ? <AdminPage /> : <Navigate to={"/"} />
         }
       />
+      {/* Edit vehicle */}
+      <Route
+        path="/admin/vehicle/edit"
+        element={
+          user && user?.role == "admin" ? (
+            <UpdateVehiclePage />
+          ) : (
+            <Navigate to={"/"} />
+          )
+        }
+      />
+
       {/* Home page */}
       <Route path="/" element={<HomePage />} />
 

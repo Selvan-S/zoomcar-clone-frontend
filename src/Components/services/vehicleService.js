@@ -33,8 +33,8 @@ export const fetchVehiclesById = async (id) => {
   }
 };
 
-// Post vehicle
-export const PostVehicleAPI = async (vehicleDetails) => {
+// Post vehicle (admin)
+export const postVehicleAPI = async (vehicleDetails) => {
   try {
     const response = await fetch(`${API_URL}/${VEHICLES_BASE_URL}`, {
       method: "POST",
@@ -45,6 +45,68 @@ export const PostVehicleAPI = async (vehicleDetails) => {
 
       body: JSON.stringify(vehicleDetails),
     });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// update vehicle (admin)
+export const updateVehicleAPI = async (vehicleDetails, vehicleId) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/${VEHICLES_BASE_URL}/${vehicleId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+
+        body: JSON.stringify(vehicleDetails),
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Fetch all vehicles (Admin)
+export const fetchAllVehiclesAPI = async (filters) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/${VEHICLES_BASE_URL}/getAllVehicles?vehicleName=${filters}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Fetch all vehicles (Admin)
+export const deleteVehiclesAPI = async (vehicleId) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/${VEHICLES_BASE_URL}/${vehicleId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {

@@ -1,18 +1,18 @@
+import { useSnackbar } from "notistack";
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import MainComponent from "../MainComponent/MainComponent";
-import Navbar from "../Common/Navbar";
-import Footer from "../Common/Footer";
+import HeadshortPlaceholder from "../../assets/headshort.jpeg";
 import { formatDate } from "../../utils/formatDate";
-import FullScreenLoading from "../Common/FullScreenLoading";
 import {
   handleFileChange,
   uploadImageToImgur,
 } from "../../utils/uploadImageToImgur";
-import { useSnackbar } from "notistack";
-import { updateUserAPI } from "../services/userService";
 import BackToGivenLocation from "../Common/BackToGivenLocation";
-import HeadshortPlaceholder from "../../assets/headshort.jpeg";
+import Footer from "../Common/Footer";
+import FullScreenLoading from "../Common/FullScreenLoading";
+import Navbar from "../Common/Navbar";
+import MainComponent from "../MainComponent/MainComponent";
+import { useAuth } from "../context/AuthContext";
+import { updateUserAPI } from "../services/userService";
 
 function UserProfile() {
   const { user, setUser } = useAuth();
@@ -44,6 +44,9 @@ function UserProfile() {
           try {
             // update the user with userAvatarLink
             await updateUserAPI(userAvatarLink.data.link); // updating user with profile picture
+            enqueueSnackbar("User avatar updated successfully", {
+              variant: "success",
+            });
           } catch (error) {
             console.error("Error while updating user Details", error);
             enqueueSnackbar("Error while updating user Details", {

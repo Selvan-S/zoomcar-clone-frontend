@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ImageWithFallback from "../Common/ImageWithFallback";
 import vehicleFallBack from "../../assets/placeholder.jpeg";
+import ImageWithFallback from "../Common/ImageWithFallback";
 
 function VehicleImageGallery({ hostCarImage }) {
   const [active, setActive] = useState(hostCarImage[0]);
@@ -18,7 +18,7 @@ function VehicleImageGallery({ hostCarImage }) {
           className="h-auto w-full rounded-lg object-cover object-center md:h-[480px]"
         />
       </div>
-      {hostCarImage.length > 0 && (
+      {hostCarImage?.length > 0 && (
         <div className="grid max-sm:grid-cols-3 max-sm:gap-2 gap-4 place-items-center max-md:grid-rows-1 max-md:grid-cols-3 md:grid-rows-5 md:grid-cols-1">
           {/* Display list of images in minimum size, clickable, change the active image, big image. */}
           {hostCarImage.map((imgelink, index) => (

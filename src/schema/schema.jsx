@@ -55,6 +55,7 @@ export const createVehicleSchema = yup.object({
   fuelType: yup.string().required("please select fuel type"),
   transmission: yup.string().required("please select transmission"),
   seats: yup.string().required("please select No. of seats"),
+  availability: yup.boolean().default(true),
   pricePerHour: yup
     .number()
     .min(1, "min one is required")

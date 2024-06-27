@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
-import { PostVehicleAPI, fetchVehiclesAPI } from "../services/vehicleService";
+import { enqueueSnackbar } from "notistack";
+import React, { createContext, useEffect, useState } from "react";
+import { fetchVehiclesAPI, postVehicleAPI } from "../services/vehicleService";
 
 export const VehicleContext = createContext();
 
@@ -47,8 +48,9 @@ const VehicleProvider = ({ children }) => {
   const createVehicle = async (vehicleDetails) => {
     try {
       setIsLoading(true);
-      const data = await PostVehicleAPI(vehicleDetails);
+      const data = await postVehicleAPI(vehicleDetails);
       setVehicles([data, ...vehicles]);
+      enqueueSnackbar("Vehicle created successfully", { variant: "success" });
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,6 +70,7 @@ const VehicleProvider = ({ children }) => {
         setCurrentVehicleDetails,
         isLoading,
         createVehicle,
+        setIsLoading,
       }}
     >
       {children}

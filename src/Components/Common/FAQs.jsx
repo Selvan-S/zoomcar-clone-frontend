@@ -2,10 +2,10 @@ import React from "react";
 
 function FAQs() {
   return (
-    <>
+    <div className="flex gap-2 flex-col">
       <div className="collapse collapse-arrow bg-base-200">
         <input type="radio" name="my-accordion-2" defaultChecked />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl max-sm:text-lg font-medium">
           How do I book a car?
         </div>
         <div className="collapse-content">
@@ -19,7 +19,7 @@ function FAQs() {
       </div>
       <div className="collapse collapse-arrow bg-base-200">
         <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl max-sm:text-lg font-medium">
           What does Fastag enabled means?
         </div>
         <div className="collapse-content">
@@ -32,7 +32,7 @@ function FAQs() {
       </div>
       <div className="collapse collapse-arrow bg-base-200">
         <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl max-sm:text-lg font-medium">
           Who will recharge the FASTag?
         </div>
         <div className="collapse-content">
@@ -45,7 +45,7 @@ function FAQs() {
       </div>
       <div className="collapse collapse-arrow bg-base-200">
         <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl max-sm:text-lg font-medium">
           What happens if I forget my personal belongings in the car?
         </div>
         <div className="collapse-content">
@@ -58,7 +58,7 @@ function FAQs() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
