@@ -58,16 +58,18 @@ function BookingCard({ bookedVehicles, index }) {
             })}
           </p>
           <p>
-            Start Date : {formatDate(bookedVehicles.startDate).substring(0, 12)}
+            Start Date : {formatDate(bookedVehicles.startTime).substring(0, 12)}
           </p>
           <p>
-            End Date : {formatDate(bookedVehicles.endDate).substring(0, 12)}
+            End Date : {formatDate(bookedVehicles.endTime).substring(0, 12)}
           </p>
           <p>
-            Pickup Time : {formatDate(bookedVehicles.startTime).substring(14)}
+            Pickup Time :{" "}
+            {new Date(bookedVehicles.startTime).toLocaleString().substring(11)}
           </p>
           <p>
-            Dropoff Time : {formatDate(bookedVehicles.endTime).substring(14)}
+            Dropoff Time :{" "}
+            {new Date(bookedVehicles.endTime).toLocaleString().substring(11)}
           </p>
 
           {/* Display the current payment status */}
