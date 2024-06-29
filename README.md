@@ -5,6 +5,11 @@ Zoomcar Clone is a car rental application designed to provide users with a seaml
 ## Links
 - Check out the live website [here](https://zoomcar-clone-selvan.netlify.app/)!.
 - To Check the Backend code of the Zoomcar Clone project, please refer to this [link](https://github.com/Selvan-S/zoomcar-clone-backend).
+## Test With Credentials
+### Role: `admin`
+- Email: `selvan0023@gmail.com`
+- Password: `%zHy8AaPFt`
+- What can he do?: can give approval to the hosted vehicle, and can do CRUD operations on Vehicles 
 ## Technologies used
 - **Frontend:** React.js, Formik, React Router, Context API, CSS (Tailwind CSS, DaisyUI)
 -	**Backend:** Node.js, Express.js, MongoDB, JWT, Bcrypt
