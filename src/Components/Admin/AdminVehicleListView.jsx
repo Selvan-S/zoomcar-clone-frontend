@@ -52,6 +52,7 @@ function AdminVehicleListView() {
               <td>seats</td>
               <td>availability</td>
               <td>pricePerHour</td>
+              <td>hostCarStatus</td>
               <td>createdAt</td>
               <th>Operations</th>
             </tr>
@@ -81,6 +82,7 @@ function AdminVehicleListView() {
                     {vehicle.availability ? "Available" : "Not Available"}
                   </th>
                   <th>{vehicle.pricePerHour}</th>
+                  <th>{vehicle.hostCarStatus}</th>
                   <th>{new Date(vehicle.createdAt).toLocaleString()}</th>
                   <th className="flex justify-center gap-2">
                     <Link
@@ -91,10 +93,12 @@ function AdminVehicleListView() {
                       }}
                       to={"/admin/vehicle/edit"}
                     >
-                      <button className="btn btn-circle min-w-20">Edit</button>
+                      <button className="btn btn-info btn-outline btn-circle min-w-20">
+                        Edit
+                      </button>
                     </Link>
                     <button
-                      className="btn btn-circle min-w-20"
+                      className="btn btn-error btn-outline btn-circle min-w-20"
                       onClick={() =>
                         document
                           .getElementById(`open_delete_modal_${index}`)

@@ -54,6 +54,16 @@ function Navbar() {
                 </button>
               </li>
             )}
+            {user && user?.role == "admin" && (
+              <li>
+                <button
+                  className="justify-between py-2 text-base max-sm:text-sm"
+                  onClick={() => navigate("/admin")}
+                >
+                  Admin
+                </button>
+              </li>
+            )}
             <li>
               <button
                 className="justify-between py-2 text-base max-sm:text-sm"
@@ -62,6 +72,24 @@ function Navbar() {
                 Profile
               </button>
             </li>
+            <li>
+              <button
+                className="justify-between py-2 text-base max-sm:text-sm"
+                onClick={() => navigate("/user/hostVehicle")}
+              >
+                Host Your Vehicle
+              </button>
+            </li>
+            {user && (
+              <li>
+                <button
+                  className="justify-between py-2 text-base max-sm:text-sm"
+                  onClick={() => navigate("/user/hostedVehicleStatus")}
+                >
+                  Hosted Vehicle Status
+                </button>
+              </li>
+            )}
             {user && (
               <li>
                 <button
@@ -72,6 +100,7 @@ function Navbar() {
                 </button>
               </li>
             )}
+
             <li>
               {user ? (
                 <button

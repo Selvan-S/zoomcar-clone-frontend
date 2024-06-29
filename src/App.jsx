@@ -14,6 +14,8 @@ import SignupPage from "./pages/SignupPage.jsx";
 import UserBookings from "./pages/UserBookings.jsx";
 import VehicleDetail from "./pages/VehicleDetail.jsx";
 import VehicleList from "./pages/VehicleList.js.jsx";
+import UserHostVehiclePage from "./pages/UserHostVehiclePage.jsx";
+import UserHostedVehicleStatusPage from "./Components/User/UserHostedVehicleStatusPage.jsx";
 
 function App() {
   const { user } = useAuth();
@@ -40,7 +42,10 @@ function App() {
       />
 
       {/* Home page */}
-      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/"
+        element={user && user?.role == "admin" ? <AdminPage /> : <HomePage />}
+      />
 
       {/* --- Authentication --- */}
       {/* Login page */}
@@ -72,6 +77,18 @@ function App() {
       />
       {/* User Bookings, and can add review here. Found on Navbar profile dropdown*/}
       <Route path="/user/bookings" element={<UserBookings />} />
+      {/* User can host there vehicle*/}
+      <Route
+        path="/user/hostVehicle"
+        element={user ? <UserHostVehiclePage /> : <Navigate to={"/login"} />}
+      />
+      {/* User Hosted Vehicle Status Page*/}
+      <Route
+        path="/user/hostedVehicleStatus"
+        element={
+          user ? <UserHostedVehicleStatusPage /> : <Navigate to={"/login"} />
+        }
+      />
 
       {/* --- Vehicle --- */}
       {/* Filter the vehicles */}

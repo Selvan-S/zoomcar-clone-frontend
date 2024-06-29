@@ -94,7 +94,26 @@ export const fetchAllVehiclesAPI = async (filters) => {
   }
 };
 
-// Fetch all vehicles (Admin)
+// Fetch unapproved vehicles (Admin)
+export const fetchUnapprovedVehiclesAPI = async () => {
+  try {
+    const response = await fetch(
+      `${API_URL}/${VEHICLES_BASE_URL}/getUnapprovedVehicles`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+// Delete vehicles (Admin)
 export const deleteVehiclesAPI = async (vehicleId) => {
   try {
     const response = await fetch(
