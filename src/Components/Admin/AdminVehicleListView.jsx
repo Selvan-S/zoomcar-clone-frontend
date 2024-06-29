@@ -77,7 +77,9 @@ function AdminVehicleListView() {
                   <td>{vehicle.fuelType}</td>
                   <td>{vehicle.transmission}</td>
                   <td>{vehicle.seats} Seats</td>
-                  <th>{JSON.stringify(vehicle.availability)}</th>
+                  <th>
+                    {vehicle.availability ? "Available" : "Not Available"}
+                  </th>
                   <th>{vehicle.pricePerHour}</th>
                   <th>{new Date(vehicle.createdAt).toLocaleString()}</th>
                   <th className="flex justify-center gap-2">

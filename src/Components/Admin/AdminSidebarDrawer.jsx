@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PostVehicleForm from "./PostVehicleForm";
 import { useNavigate } from "react-router-dom";
 import AdminVehicleListView from "./AdminVehicleListView";
+import PostVehicleForm from "./PostVehicleForm";
 
 function AdminSidebarDrawer() {
   const [show, setShow] = useState({ active: "VehicleList" });
@@ -11,7 +11,7 @@ function AdminSidebarDrawer() {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-base-300 w-full">
+        <div className="navbar bg-base-300 w-full lg:justify-between">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
@@ -33,20 +33,24 @@ function AdminSidebarDrawer() {
               </svg>
             </label>
           </div>
-          <button className="mx-2 flex-1 px-2" onClick={() => navigateTo("/")}>
+          <button
+            className="mx-2 flex-1 px-2 btn btn-ghost max-w-40"
+            onClick={() => navigateTo("/")}
+          >
             Zoomcar Clone
           </button>
           <div className="hidden flex-none lg:block">
-            <ul className="menu menu-horizontal flex gap-4">
+            <ul className="menu menu-horizontal flex gap-4 self-end">
               {/* Navbar menu content here */}
               <li>
                 <button
-                  className={`${
-                    show.active == "CreateVehicle" ? "text-primary" : ""
-                  }`}
-                  onClick={() => setShow({ active: "CreateVehicle" })}
+                  className={`${show.active == "Home" ? "text-primary" : ""} `}
+                  onClick={() => {
+                    setShow({ active: "Home" });
+                    navigateTo("/");
+                  }}
                 >
-                  Create Vehicle
+                  Home
                 </button>
               </li>
               <li>
@@ -57,6 +61,16 @@ function AdminSidebarDrawer() {
                   onClick={() => setShow({ active: "VehicleList" })}
                 >
                   Vehicle List
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`${
+                    show.active == "CreateVehicle" ? "text-primary" : ""
+                  }`}
+                  onClick={() => setShow({ active: "CreateVehicle" })}
+                >
+                  Create Vehicle
                 </button>
               </li>
             </ul>
@@ -95,19 +109,19 @@ function AdminSidebarDrawer() {
             </button>
             <button
               className={`${
-                show.active == "CreateVehicle" ? "btn-primary" : ""
-              } btn btn-outline`}
-              onClick={() => setShow({ active: "CreateVehicle" })}
-            >
-              Create Vehicle
-            </button>
-            <button
-              className={`${
                 show.active == "VehicleList" ? "btn-primary" : ""
               } btn btn-outline`}
               onClick={() => setShow({ active: "VehicleList" })}
             >
               Vehicle List
+            </button>
+            <button
+              className={`${
+                show.active == "CreateVehicle" ? "btn-primary" : ""
+              } btn btn-outline`}
+              onClick={() => setShow({ active: "CreateVehicle" })}
+            >
+              Create Vehicle
             </button>
           </div>
         </div>
