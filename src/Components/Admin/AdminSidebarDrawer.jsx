@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminVehicleListView from "./AdminVehicleListView";
 import PostVehicleForm from "./PostVehicleForm";
+import HostVehicleApproval from "./HostVehicleApproval";
+import { useAuth } from "../context/AuthContext";
 
 function AdminSidebarDrawer() {
   const [show, setShow] = useState({ active: "VehicleList" });
+  const { logout } = useAuth();
+
   const navigateTo = useNavigate();
   return (
     <div className="drawer">
@@ -35,7 +39,7 @@ function AdminSidebarDrawer() {
           </div>
           <button
             className="mx-2 flex-1 px-2 btn btn-ghost max-w-40"
-            onClick={() => navigateTo("/")}
+            onClick={() => navigateTo("/admin")}
           >
             Zoomcar Clone
           </button>
@@ -44,17 +48,20 @@ function AdminSidebarDrawer() {
               {/* Navbar menu content here */}
               <li>
                 <button
-                  className={`${show.active == "Home" ? "text-primary" : ""} `}
+                  className={`${
+                    show.active == "vehicleApproval" ? "text-primary" : ""
+                  } `}
                   onClick={() => {
-                    setShow({ active: "Home" });
+                    setShow({ active: "vehicleApproval" });
                     navigateTo("/");
                   }}
                 >
-                  Home
+                  Vehicle Approval
                 </button>
               </li>
               <li>
                 <button
+                  id="VehicleList_btn"
                   className={`${
                     show.active == "VehicleList" ? "text-primary" : ""
                   }`}
@@ -73,6 +80,17 @@ function AdminSidebarDrawer() {
                   Create Vehicle
                 </button>
               </li>
+              <li>
+                <button
+                  className={`${show.active == "logout" ? "text-primary" : ""}`}
+                  onClick={() => {
+                    setShow({ active: "logout" });
+                    logout();
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -83,6 +101,11 @@ function AdminSidebarDrawer() {
           </div>
           <div className="">
             {show && show.active == "VehicleList" && <AdminVehicleListView />}
+          </div>
+          <div className="">
+            {show && show.active == "vehicleApproval" && (
+              <HostVehicleApproval />
+            )}
           </div>
         </div>
       </div>
@@ -98,16 +121,17 @@ function AdminSidebarDrawer() {
           <div className="mt-20 flex gap-4 flex-col">
             <button
               className={`${
-                show.active == "Home" ? "btn-primary" : ""
+                show.active == "vehicleApproval" ? "btn-primary" : ""
               } btn btn-outline`}
               onClick={() => {
-                setShow({ active: "Home" });
+                setShow({ active: "vehicleApproval" });
                 navigateTo("/");
               }}
             >
-              Home
+              Vehicle Approval
             </button>
             <button
+              id="VehicleList_btn"
               className={`${
                 show.active == "VehicleList" ? "btn-primary" : ""
               } btn btn-outline`}
@@ -122,6 +146,17 @@ function AdminSidebarDrawer() {
               onClick={() => setShow({ active: "CreateVehicle" })}
             >
               Create Vehicle
+            </button>
+            <button
+              className={`${
+                show.active == "logout" ? "btn-primary" : ""
+              } btn btn-outline`}
+              onClick={() => {
+                setShow({ active: "logout" });
+                logout();
+              }}
+            >
+              Logout
             </button>
           </div>
         </div>

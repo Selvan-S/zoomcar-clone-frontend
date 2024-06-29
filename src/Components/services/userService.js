@@ -51,4 +51,27 @@ const updateUserAPI = async (userAvatarLink) => {
   }
 };
 
-export { fetchUserDetails, updateUserAPI };
+const fetchHostVehiclesStatusAPI = async () => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_ZOOM_CAR_CLONE_BASE_API_URL}/${
+        import.meta.env.VITE_USER_BASE_URL
+      }/getUserHostedVehicleStatus`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    throw new Error("Failed to GET user hosted vehicle status");
+  }
+};
+
+export { fetchUserDetails, updateUserAPI, fetchHostVehiclesStatusAPI };

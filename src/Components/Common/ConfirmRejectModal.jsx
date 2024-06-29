@@ -1,27 +1,30 @@
-import React from "react";
-import { deleteVehiclesAPI } from "../services/vehicleService";
 import { enqueueSnackbar } from "notistack";
+import React from "react";
+import { updateVehicleAPI } from "../services/vehicleService";
 
-function ConfirmDeleteModel({
+function ConfirmRejectModal({
   isLoading,
   setIsLoading,
-  vehicles,
-  setVehicles,
+  unapprovedVehicles,
+  setUnapprovedVehicles,
   vehicleId,
   index,
 }) {
-  async function handleConfirmDelete() {
+  async function handleConfirmApprove() {
     try {
       setIsLoading(true);
-      const data = await deleteVehiclesAPI(vehicleId);
+      const data = await updateVehicleAPI(
+        { hostCarStatus: "rejected" },
+        vehicleId
+      );
       if (data.error) {
         enqueueSnackbar(data.error, { variant: "error" });
         return;
       }
-      const filterVehicle = vehicles.filter(
+      const filterVehicle = unapprovedVehicles.filter(
         (vehicle) => vehicle._id != vehicleId
       );
-      setVehicles(filterVehicle);
+      setUnapprovedVehicles(filterVehicle);
       enqueueSnackbar(data.msg, { variant: "success" });
     } catch (error) {
       console.error(error);
@@ -31,12 +34,12 @@ function ConfirmDeleteModel({
   }
   return (
     <div>
-      <dialog id={`open_delete_modal_${index}`} className="modal">
+      <dialog id={`open_reject_modal_${index}`} className="modal">
         <div className="modal-box">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
-              id={`close_button_${index}`}
+              id={`reject_close_button_${index}`}
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl"
               disabled={isLoading}
             >
@@ -44,13 +47,13 @@ function ConfirmDeleteModel({
             </button>
           </form>
           <h3 className="font-bold text-lg text-center">
-            Kindly confirm your request to delete the vehicle.
+            Kindly confirm your request to reject the vehicle approval.
           </h3>
           <div className="flex justify-center gap-x-10 mt-8">
             <button
               className="btn btn-primary btn-outline max-sm:min-w-20 min-w-40"
               onClick={() =>
-                document.getElementById(`close_button_${index}`).click()
+                document.getElementById(`reject_close_button_${index}`).click()
               }
               disabled={isLoading}
             >
@@ -59,12 +62,12 @@ function ConfirmDeleteModel({
             <button
               className="btn btn-error btn-outline max-sm:min-w-20 min-w-40"
               onClick={() => {
-                handleConfirmDelete();
-                document.getElementById(`close_button_${index}`).click();
+                handleConfirmApprove();
+                document.getElementById(`reject_close_button_${index}`).click();
               }}
               disabled={isLoading}
             >
-              Confirm
+              Reject
             </button>
           </div>
         </div>
@@ -73,4 +76,4 @@ function ConfirmDeleteModel({
   );
 }
 
-export default ConfirmDeleteModel;
+export default ConfirmRejectModal;

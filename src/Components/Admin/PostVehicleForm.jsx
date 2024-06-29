@@ -121,7 +121,7 @@ function PostVehicleForm({
   return (
     <>
       <h1 className="text-3xl text-center mb-4">
-        {isEditing ? "Edit " : "Create "}Vehicle
+        {isEditing ? "Edit " : "Host "}Vehicle
       </h1>
       <FormikProvider value={formik}>
         <form className="" onSubmit={handleSubmit}>
