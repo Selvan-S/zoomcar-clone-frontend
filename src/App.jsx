@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import UpdateVehiclePage from "./Components/Admin/UpdateVehiclePage.jsx";
 import PageNotFound from "./Components/Common/PageNotFound.jsx";
-import UserProfile from "./Components/User/UserProfile.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 import { useAuth } from "./Components/context/AuthContext.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
 import BookingPage from "./pages/BookingPage.jsx";

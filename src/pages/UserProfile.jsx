@@ -1,18 +1,18 @@
 import { useSnackbar } from "notistack";
 import React, { useState } from "react";
-import HeadshortPlaceholder from "../../assets/headshort.jpeg";
-import { formatDate } from "../../utils/formatDate";
+import HeadshortPlaceholder from "../assets/headshort.jpeg";
+import BackToGivenLocation from "../Components/Common/BackToGivenLocation";
+import Footer from "../Components/Common/Footer";
+import FullScreenLoading from "../Components/Common/FullScreenLoading";
+import Navbar from "../Components/Common/Navbar";
+import MainComponent from "../Components/MainComponent/MainComponent";
+import { useAuth } from "../Components/context/AuthContext";
+import { updateUserAPI } from "../Components/services/userService";
+import { formatDate } from "../utils/formatDate";
 import {
   handleFileChange,
   uploadImageToImgur,
-} from "../../utils/uploadImageToImgur";
-import BackToGivenLocation from "../Common/BackToGivenLocation";
-import Footer from "../Common/Footer";
-import FullScreenLoading from "../Common/FullScreenLoading";
-import Navbar from "../Common/Navbar";
-import MainComponent from "../MainComponent/MainComponent";
-import { useAuth } from "../context/AuthContext";
-import { updateUserAPI } from "../services/userService";
+} from "../utils/uploadImageToImgur";
 
 function UserProfile() {
   const { user, setUser } = useAuth();
@@ -82,11 +82,7 @@ function UserProfile() {
             <div className="avatar">
               <div className="w-56 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                 {user?.userAvatarLink ? (
-                  <img alt="profile picture" src={user.userAvatarLink} />
-                ) : user?.name ? (
-                  <span className="uppercase text-3xl">
-                    {user.name.substring(0, 1)}
-                  </span>
+                  <img alt="User avatar" src={user.userAvatarLink} />
                 ) : (
                   <img alt="placeholder" src={HeadshortPlaceholder} />
                 )}
