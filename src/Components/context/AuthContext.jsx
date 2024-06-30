@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [sentMailAlert, setSentMailAlert] = useState(false);
+  const [activationMailAlert, SetActivationMailAlert] = useState(false);
   const [error, setError] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
   const navigateTo = useNavigate();
@@ -67,20 +68,17 @@ export const AuthProvider = ({ children }) => {
       setError(null);
 
       const userData = await registerAPI(credentials);
-      if (userData?.user) {
-        localStorage.setItem("authToken", JSON.stringify(userData.user.token));
-      }
       if (userData.error) {
         setError(userData.error);
         enqueueSnackbar(`${userData.error}`, { variant: "error" });
       } else {
-        setUser(userData.user);
-        enqueueSnackbar("Signup successful", { variant: "success" });
+        enqueueSnackbar(userData.msg, { variant: "success" });
+        SetActivationMailAlert(true);
       }
     } catch (err) {
-      console.error("Login failed:", error);
-      setError("Login failed");
-      enqueueSnackbar(`Login failed`, { variant: "error" });
+      console.error("Sign up failed:", error);
+      setError("Sign up failed");
+      enqueueSnackbar(`Sign up failed`, { variant: "error" });
     } finally {
       setLoading(false);
     }
@@ -154,6 +152,7 @@ export const AuthProvider = ({ children }) => {
         forgotPassword,
         passwordReset,
         sentMailAlert,
+        activationMailAlert,
       }}
     >
       {children}
