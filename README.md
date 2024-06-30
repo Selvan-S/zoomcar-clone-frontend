@@ -10,6 +10,10 @@ Zoomcar Clone is a car rental application designed to provide users with a seaml
 - Email: `selvan0023@gmail.com`
 - Password: `%zHy8AaPFt`
 - What can he do?: can give approval to the hosted vehicle, and can do CRUD operations on Vehicles 
+### Role: `user`
+- Email: `iamselvans@gmail.com`
+- Password: `#wA&S2y3`
+- What can he do?: can rent a vehicle on specific date and time, can make secure payments, can host there own vehicle, manage bookings, write reviews, etc.,  
 ## Technologies used
 - **Frontend:** React.js, Formik, React Router, Context API, CSS (Tailwind CSS, DaisyUI)
 -	**Backend:** Node.js, Express.js, MongoDB, JWT, Bcrypt
